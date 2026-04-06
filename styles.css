@@ -34,6 +34,8 @@ html[data-theme="light"] {
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -311,6 +313,8 @@ video {
 
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
   position: relative;
   display: flex;
   align-items: center;
@@ -1342,8 +1346,34 @@ video {
 }
 
 @media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   .section {
     padding: 4.5rem 0;
+  }
+
+  .hero {
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding: 6rem 0 4rem;
+  }
+
+  .hero-accent,
+  .floating-dot,
+  .scroll-indicator {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.98rem;
   }
 
   .theme-toggle {
@@ -1410,6 +1440,28 @@ video {
 
   .slide-btn {
     justify-self: center;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 5.5rem 0 3rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .hero-stats {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .nav-menu {
+    top: 68px;
   }
 }
 
