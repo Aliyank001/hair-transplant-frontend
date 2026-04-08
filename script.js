@@ -23,7 +23,22 @@ const pageTransition = document.querySelector(".page-transition");
 
 let testimonialIndex = 0;
 
+function updateViewportHeightVar() {
+  const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  const safeVh = Math.max(1, viewportHeight) * 0.01;
+  document.documentElement.style.setProperty("--app-vh", `${safeVh}px`);
+}
+
+updateViewportHeightVar();
+
+window.addEventListener("resize", updateViewportHeightVar);
+window.addEventListener("orientationchange", updateViewportHeightVar);
+window.visualViewport?.addEventListener("resize", updateViewportHeightVar);
+window.visualViewport?.addEventListener("scroll", updateViewportHeightVar);
+
 window.addEventListener("load", () => {
+  updateViewportHeightVar();
+
   setTimeout(() => {
     loader.classList.add("hidden");
   }, 1350);
