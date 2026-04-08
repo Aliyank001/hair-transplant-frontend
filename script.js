@@ -29,15 +29,60 @@ function updateViewportHeightVar() {
   document.documentElement.style.setProperty("--app-vh", `${safeVh}px`);
 }
 
+function isTouchMobileViewport() {
+  const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  const isSmallScreen = window.matchMedia("(max-width: 1024px)").matches;
+  return isTouchDevice && isSmallScreen;
+}
+
+function forceInitialViewportReflow() {
+  if (!isTouchMobileViewport()) {
+    return;
+  }
+
+  if (window.scrollY > 0 || window.location.hash) {
+    return;
+  }
+
+  const root = document.documentElement;
+  const previousBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+
+  requestAnimationFrame(() => {
+    window.scrollTo(0, 1);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+      root.style.scrollBehavior = previousBehavior;
+      updateViewportHeightVar();
+    });
+  });
+}
+
+function scheduleViewportStabilization() {
+  updateViewportHeightVar();
+  forceInitialViewportReflow();
+
+  [120, 450, 900].forEach((delay) => {
+    window.setTimeout(() => {
+      updateViewportHeightVar();
+      forceInitialViewportReflow();
+    }, delay);
+  });
+}
+
 updateViewportHeightVar();
 
 window.addEventListener("resize", updateViewportHeightVar);
 window.addEventListener("orientationchange", updateViewportHeightVar);
+window.addEventListener("orientationchange", forceInitialViewportReflow);
+window.addEventListener("pageshow", () => {
+  scheduleViewportStabilization();
+});
 window.visualViewport?.addEventListener("resize", updateViewportHeightVar);
 window.visualViewport?.addEventListener("scroll", updateViewportHeightVar);
 
 window.addEventListener("load", () => {
-  updateViewportHeightVar();
+  scheduleViewportStabilization();
 
   setTimeout(() => {
     loader.classList.add("hidden");
