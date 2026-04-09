@@ -5,7 +5,6 @@
 }
 
 :root {
-  --app-vh: 1vh;
   --bg: #0b0f14;
   --surface: #111821;
   --surface-soft: #16212d;
@@ -122,7 +121,7 @@ video {
   position: fixed;
   inset: 0;
   width: 100%;
-  min-height: calc(var(--app-vh) * 100);
+  min-height: 100vh;
   display: grid;
   place-items: center;
   gap: 1rem;
@@ -317,8 +316,6 @@ video {
 
 .hero {
   min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
   position: relative;
   display: flex;
   align-items: center;
@@ -1350,6 +1347,11 @@ video {
 }
 
 @media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
   html,
   body {
     width: 100%;
@@ -1357,13 +1359,13 @@ video {
   }
 
   .section {
-    padding: 4.5rem 0;
+    padding: 3.4rem 0;
   }
 
   .hero {
     min-height: 100svh;
     min-height: 100dvh;
-    padding: 1.25rem 0 3.5rem;
+    padding: 0.9rem 0 2.4rem;
     align-items: flex-start;
   }
 
@@ -1384,18 +1386,18 @@ video {
   .hero-content {
     width: 100%;
     max-width: 100%;
-    padding: 0 0.25rem;
+    padding: 0 0.1rem;
   }
 
   .hero-title {
-    font-size: clamp(1.85rem, 8.2vw, 2.55rem);
-    line-height: 1.05;
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    line-height: 1.06;
   }
 
   .hero-subtitle {
     max-width: 34rem;
-    font-size: 0.92rem;
-    line-height: 1.55;
+    font-size: 0.8rem;
+    line-height: 1.45;
   }
 
   .hero-cta {
@@ -1406,6 +1408,8 @@ video {
 
   .hero-cta .btn {
     width: 100%;
+    padding: 0.72rem 1rem;
+    font-size: 0.88rem;
   }
 
   .hero-stats {
@@ -1429,7 +1433,7 @@ video {
     backdrop-filter: blur(14px);
     border-top: 1px solid var(--line);
     flex-direction: column;
-    padding: 1.2rem;
+    padding: 1rem;
     transform: translateY(-120%);
     opacity: 0;
     transition: transform 0.35s ease, opacity 0.35s ease;
@@ -1455,6 +1459,93 @@ video {
   .stats-grid,
   .booking-form {
     grid-template-columns: 1fr;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+  }
+
+  h2 {
+    font-size: clamp(1.45rem, 5vw, 2rem);
+  }
+
+  .section-head {
+    margin-bottom: 1.4rem;
+  }
+
+  .container {
+    width: min(1140px, 94vw);
+  }
+
+  .loader {
+    gap: 0.8rem;
+    padding: 1.2rem;
+  }
+
+  .loader__logo {
+    font-size: 1.55rem;
+  }
+
+  .loader__text {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .follicle-loader {
+    width: 58px;
+    height: 92px;
+  }
+
+  .stat-card,
+  .treatment-card,
+  .price-card,
+  .doctor-card,
+  .testimonial,
+  .booking-form,
+  .contact-info,
+  .map,
+  .about-grid article {
+    border-radius: 16px;
+  }
+
+  .stat-card,
+  .treatment-card,
+  .price-card,
+  .doctor-card {
+    padding: 1rem;
+  }
+
+  .price {
+    font-size: 1.6rem;
+  }
+
+  .hero-stat-number {
+    font-size: 1.35rem;
+  }
+
+  .doctor-card img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .doctor-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .doctor-cred,
+  .doctor-desc,
+  .price-card li,
+  .hero-stat-label,
+  p {
+    font-size: 0.8rem;
+  }
+
+  .comparison {
+    height: 220px;
+  }
+
+  .gallery img {
+    height: 145px;
   }
 
   .comparison {
@@ -1844,16 +1935,12 @@ video {
   .scroll-indicator {
     bottom: 1rem;
   }
-}
 
-/* Final mobile viewport stabilization (kept at file end to override duplicated rules above) */
-@media (max-width: 768px) {
   .container {
     width: min(1140px, 94vw);
   }
 
   .loader {
-    min-height: calc(var(--app-vh) * 100);
     align-content: center;
     text-align: center;
     gap: 0.8rem;
@@ -1875,10 +1962,10 @@ video {
   }
 
   .hero {
-    min-height: calc(var(--app-vh) * 100) !important;
-    height: auto !important;
-    padding: 1rem 0 3rem !important;
-    align-items: flex-start !important;
+    min-height: 100vh;
+    height: auto;
+    padding: 1rem 0 3rem;
+    align-items: flex-start;
   }
 
   .hero-video {
@@ -1890,20 +1977,20 @@ video {
   }
 
   .hero-content {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100%;
+    max-width: 100%;
     padding: 0 0.1rem;
   }
 
   .hero-title {
-    font-size: clamp(1.75rem, 8.2vw, 2.4rem) !important;
-    line-height: 1.08 !important;
+    font-size: clamp(1.75rem, 8.2vw, 2.4rem);
+    line-height: 1.08;
   }
 
   .hero-subtitle {
-    max-width: 100% !important;
-    font-size: 0.92rem !important;
-    line-height: 1.52 !important;
+    max-width: 100%;
+    font-size: 0.92rem;
+    line-height: 1.52;
   }
 
   .hero-badge {
@@ -1921,7 +2008,7 @@ video {
 
   .hero-cta {
     width: 100%;
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1fr;
     gap: 0.75rem;
   }
@@ -1934,27 +2021,6 @@ video {
   .floating-dot,
   .scroll-indicator,
   .hero-stats {
-    display: none !important;
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  .loader {
-    gap: 0.5rem;
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-  }
-
-  .loader__logo {
-    font-size: 1.55rem;
-  }
-
-  .follicle-loader {
-    width: 56px;
-    height: 84px;
-  }
-
-  .loader__text {
-    font-size: 0.78rem;
+    display: none;
   }
 }
